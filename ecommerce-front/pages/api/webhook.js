@@ -1,9 +1,9 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
-const stripe = require('stripe')(process.env.STRIPE_SK);
+const stripe = require('stripe')(process.env.STRIPE_SK)
 import  { buffer } from "micro"
 
-const endpointSecret = "whsec_4663bfa42b9219135fe40938fb0febdd1571e0ee04b34a632cf4673f300f7ced";
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
 
 export default async function handler(req, res) {
     await mongooseConnect()

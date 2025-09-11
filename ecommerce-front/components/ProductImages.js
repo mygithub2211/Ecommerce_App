@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const BigImageWrapper = styled.div`
-  position: relative; 
-  z-index: 0; 
+const BigImageWrapper = styled.div` 
   max-width: 360px;
   margin: 0 auto 12px;
   aspect-ratio: 1 / 1;           
@@ -13,15 +11,12 @@ const BigImageWrapper = styled.div`
   place-items: center;
   overflow: hidden;               
 `
-
 const BigImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: contain;            
 `
 const ImageButtons = styled.div`
-  position: relative; 
-  z-index: 0;
   display: flex;
   gap: 8px;
   margin-top: 10px;

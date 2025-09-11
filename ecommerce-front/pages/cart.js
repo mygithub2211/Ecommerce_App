@@ -212,7 +212,7 @@ export default function CartPage() {
                             </CityHolder> 
                             <Input 
                                 type="text" 
-                                placeholder="Postal Code" 
+                                placeholder="Zip Code" 
                                 value={postalCode} 
                                 name="postalCode"
                                 onChange={ev => setPostalCode(ev.target.value)} 

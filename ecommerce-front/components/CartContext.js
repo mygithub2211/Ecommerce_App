@@ -6,7 +6,6 @@ export function CartContextProvider({children}) {
     const [cartProducts, setCartProducts] = useState([])
     const hydrated = useRef(false)
    
-   // 1) Initial load / hydration
     useEffect(() => {
         if (typeof window === "undefined") return
 
@@ -14,34 +13,29 @@ export function CartContextProvider({children}) {
         const fromCheckoutSuccess = params.has('success')
 
         if (fromCheckoutSuccess) {
-        // Returning from Stripe success: nuke stored cart before any hydration
-        try { localStorage.removeItem('cart') } catch {}
-            setCartProducts([])
-            hydrated.current = true
-            return
+            try { localStorage.removeItem('cart') } catch {}
+                setCartProducts([])
+                hydrated.current = true
+                return
         }
-
         try {
             const saved = localStorage.getItem("cart")
             if (saved) setCartProducts(JSON.parse(saved))
         } catch {
-            // corrupted value; clear it
             try { localStorage.removeItem('cart') } catch {}
             setCartProducts([])
         } finally {
             hydrated.current = true
         }
     }, [])
-
-    // 2) Persist changes (only after hydration to avoid first-render races)
     useEffect(() => {
         if (typeof window === "undefined") return
         if (!hydrated.current) return
 
         if (cartProducts.length > 0) {
-        try { localStorage.setItem("cart", JSON.stringify(cartProducts)) } catch {}
+            try { localStorage.setItem("cart", JSON.stringify(cartProducts)) } catch {}
         } else {
-        try { localStorage.removeItem("cart") } catch {}
+            try { localStorage.removeItem("cart") } catch {}
         }
     }, [cartProducts])
 

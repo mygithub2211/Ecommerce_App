@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const BigImageWrapper = styled.div`
+  position: relative; 
+  z-index: 0; 
   max-width: 360px;
   margin: 0 auto 12px;
   aspect-ratio: 1 / 1;           
@@ -18,6 +20,8 @@ const BigImage = styled.img`
   object-fit: contain;            
 `
 const ImageButtons = styled.div`
+  position: relative; 
+  z-index: 0;
   display: flex;
   gap: 8px;
   margin-top: 10px;
@@ -64,7 +68,6 @@ export default function ProductImages({ images }) {
       <BigImageWrapper>
         {activeImage ? <BigImage src={activeImage} alt="" /> : null}
       </BigImageWrapper>
-
       <ImageButtons>
         {(images ?? []).map((image) => (
           <ImageButton

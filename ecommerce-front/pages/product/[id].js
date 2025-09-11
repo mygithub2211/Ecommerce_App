@@ -28,7 +28,6 @@ const PriceRow = styled.div`
 const Price = styled.span`
     font-size:1.4rem;
 `
-
 const Description = ({ text }) => {
     const raw = text == null ? "" : String(text);
     const lines = raw
@@ -36,11 +35,9 @@ const Description = ({ text }) => {
         .map((l) => l.trim())
         .filter(Boolean)
         .map((l) => l.replace(/^[-–—•]\s*/, "")); 
-
     if (lines.length <= 1) {
         return <p style={{ whiteSpace: "pre-line", lineHeight: 1.8 }}>{raw}</p>;
     }
-
     return (
         <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.6 }}>
         {lines.map((line, i) => (
@@ -49,7 +46,6 @@ const Description = ({ text }) => {
         </ul>
     )
 }
-
 
 export default function ProductPage({product}) {
     const { addProduct } = useContext(CartContext)

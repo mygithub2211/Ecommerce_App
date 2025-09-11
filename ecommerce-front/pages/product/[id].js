@@ -28,6 +28,29 @@ const PriceRow = styled.div`
 const Price = styled.span`
     font-size:1.4rem;
 `
+
+const Description = ({ text }) => {
+    const raw = text == null ? "" : String(text);
+    const lines = raw
+        .split(/\r?\n/)
+        .map((l) => l.trim())
+        .filter(Boolean)
+        .map((l) => l.replace(/^[-–—•]\s*/, "")); 
+
+    if (lines.length <= 1) {
+        return <p style={{ whiteSpace: "pre-line", lineHeight: 1.6 }}>{raw}</p>;
+    }
+
+    return (
+        <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.6 }}>
+        {lines.map((line, i) => (
+            <li key={i}>{line}</li>
+        ))}
+        </ul>
+    )
+}
+
+
 export default function ProductPage({product}) {
     const { addProduct } = useContext(CartContext)
     return (
@@ -40,7 +63,7 @@ export default function ProductPage({product}) {
                     </WhiteBox>
                     <div>
                         <Title>{product.title}</Title>
-                        <p>{product.description}</p>
+                        <Description text={product.description} />
                         <PriceRow>
                             <Price>${product.price}</Price>
                             <div>

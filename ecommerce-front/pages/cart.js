@@ -154,7 +154,6 @@ export default function CartPage() {
                                                 <ProductImageBox>
                                                     <img src={product.images[0]} />
                                                 </ProductImageBox>
-                                                
                                                 {product.title}
                                             </ProductInfoCell>
                                             <td>

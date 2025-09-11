@@ -38,5 +38,4 @@ export const config = {
     api: {bodyParser:false}
 }
 
-//evenly-loves-whoa-worth
-//acct_1Pn6Xx09YiVM6KIR
+

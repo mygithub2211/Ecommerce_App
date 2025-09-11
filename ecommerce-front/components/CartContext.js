@@ -1,9 +1,10 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useRef, useState } from "react"
 
 export const CartContext = createContext({})
 
 export function CartContextProvider({children}) {
     const [cartProducts, setCartProducts] = useState([])
+    const hydrated = useRef(false)
    
    // 1) Initial load / hydration
     useEffect(() => {
@@ -15,20 +16,20 @@ export function CartContextProvider({children}) {
         if (fromCheckoutSuccess) {
         // Returning from Stripe success: nuke stored cart before any hydration
         try { localStorage.removeItem('cart') } catch {}
-        setCartProducts([])
-        hydrated.current = true
-        return
+            setCartProducts([])
+            hydrated.current = true
+            return
         }
 
         try {
-        const saved = localStorage.getItem("cart")
-        if (saved) setCartProducts(JSON.parse(saved))
+            const saved = localStorage.getItem("cart")
+            if (saved) setCartProducts(JSON.parse(saved))
         } catch {
-        // corrupted value; clear it
-        try { localStorage.removeItem('cart') } catch {}
-        setCartProducts([])
+            // corrupted value; clear it
+            try { localStorage.removeItem('cart') } catch {}
+            setCartProducts([])
         } finally {
-        hydrated.current = true
+            hydrated.current = true
         }
     }, [])
 

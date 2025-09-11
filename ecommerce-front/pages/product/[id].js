@@ -42,7 +42,7 @@ const Description = ({ text }) => {
     }
 
     return (
-        <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.8 }}>
+        <ul style={{ paddingLeft: "1.5rem", lineHeight: 1.6 }}>
         {lines.map((line, i) => (
             <li key={i}>{line}</li>
         ))}

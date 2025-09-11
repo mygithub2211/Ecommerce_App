@@ -38,7 +38,7 @@ const Description = ({ text }) => {
         .map((l) => l.replace(/^[-–—•]\s*/, "")); 
 
     if (lines.length <= 1) {
-        return <p style={{ whiteSpace: "pre-line", lineHeight: 1.6 }}>{raw}</p>;
+        return <p style={{ whiteSpace: "pre-line", lineHeight: 1.8 }}>{raw}</p>;
     }
 
     return (
